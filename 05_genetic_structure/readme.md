@@ -150,3 +150,69 @@ Here, each point is a comparison of D<sub>XY</sub> (x-axis) and F<sub>ST</sub> (
       points(x_slide2@nuc.diversity.between[a,]  / 100000, x_slide2@nuc.F_ST.pairwise[a,], pch=19)
     }
 
+
+
+
+## Estimating Genetic Structure from SNPs
+
+Next we will be working with a subset of genomic SNPs (n = 5000) from the Brown Creeper populations (the certhia_contact.stru file). Here is a map of the
+subspecies again as well as a sampling map of all the populations used for the SNP dataset we are using today. In Panel B, 
+green areas indicate places with dense vegetation, likely different types of forest.
+
+![distribution](https://github.com/jdmanthey/MolEcol2019/blob/master/06_genetic_structure/sampling.png)
+
+Open RStudio and set the working directory to the same one we have been using and download the .stru file from this 
+directory on GitHub. 
+
+We'll need to install a package for this exercises, do that here.
+
+    install.packages("adegenet")
+    
+Load the libraries:
+    
+    library("adegenet")
+    
+### Using PCA
+
+We will use a method called discriminant analysis of principal components (DAPC). This is an extension of the principle
+components analysis (PCA) that we discussed in class. If you want more info about this method, a link to the paper is here:
+https://bmcgenet.biomedcentral.com/articles/10.1186/1471-2156-11-94
+
+To get started we load a structure-formatted file into R. If you are interested in what that looks like, you can open the 
+file in a text editor and check it out.
+
+    x <- read.structure("certhia_contact.stru",onerowperind=F,n.ind=24,n.loc=5000,ask=F,sep="\t")
+
+Next, we'll use the DAPC program to identify the number of potential clusters in the genetic data. Here, we are setting the
+maximum number of clusters to 6 (number of populations) and running for 1e5 iterations. Here, when the program asks you how 
+many PCs to retain, choose 20. This is an amount that maintains most of the variation in the data and is less than the 
+number of individuals we have sampled. Then, the program will show you a Bayesian Information Criterion (BIC) plot. The BIC
+value will be _lowest_ where the number of genetic clusters is most supported. Choose that number of K (hopefully = 2). 
+
+    grp <- find.clusters(x,max.n.clust=6,n.iter=1e5)
+    
+Next, we will choose the number of PCs again (choose 20 again) as well as the number of discriminant factors to include, which
+has to be less than K. Choose the highest number you can based on the value of K you chose.
+    
+    dapc1 <- dapc(x,grp$grp)
+
+Now, we'll plot the DAPC results in two ways. The first will be the principal components themselves, colored to the group that
+each individual (here each point) belongs to:
+    
+    plot(dapc1$tab[grp$grp==1,1:2], xlim=c(min(dapc1$tab[,1]), max(dapc1$tab[,1])), ylim=c(min(dapc1$tab[,2]), max(dapc1$tab[,2])), col="blue", pch=19)
+    points(dapc1$tab[grp$grp==2,1:2], col="orange2", pch=19)
+
+We can also look at a STRUCTURE-like type of plot showing the assignment of each individual to the two genetic clusters:
+    
+    compoplot(dapc1, col=c("blue", "orange2"))
+
+If you already looked at the text input file, you know we have three individuals per population from 8 localities:
+    1. Utah (individuals 1-3)
+    2. Pinal Mountains (4-6)
+    3. Pinaleno Mountains (7-9)
+    4. Santa Catalina Mountains (10-12)
+    5. Chiricahua Mountains (13-15)
+    6. Santa Rita Mountains (16-18)
+    7. Huachuca Mountains (19-21)
+    8. Central Mexico (22-24)
+
