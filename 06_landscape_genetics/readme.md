@@ -154,7 +154,7 @@ If the test object looks good and reasonable, we can write it to a new file:
 
     writeRaster(test, file="test")
 
-If approved, save a pdf file of the plot of your conductance raster, and email to Dr. Manthey to be shown on Friday.
+If approved, save a pdf file of the plot of your conductance raster, and email to Dr. Manthey to be shown next week.
    
 
 
@@ -163,9 +163,9 @@ If approved, save a pdf file of the plot of your conductance raster, and email t
 Today we will be using the conductance maps we made last week to estimate least cost path (LCP) distances between 
 populations, and see which model best fits the data.
 
-### 1. Answer question #3 on your worksheet.
+### 1. Answer question #5 on your worksheet.
 
-### 2. Change the directory to the one you used on Wednesday. Install and load packages.
+### 2. Change the directory to the one you used last week. Install and load packages.
 
 We need one more package to be installed:
 
