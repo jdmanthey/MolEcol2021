@@ -129,7 +129,7 @@ the test object. You should change that to one of the names of the raster layers
 Examples for landcover reclassification. Make sure to redefine all values otherwise the map will not make sense.
 
     # initial values: 1000 = barren, 2000 = forest, 3000 = scrub, 4000 = herbaceous, 
-    5000 = water, 6000 = developed (i.e., urban), 7000 = disturbed (e.g., agriculture, invasive species, destroyed areas)
+    #5000 = water, 6000 = developed (i.e., urban), 7000 = disturbed (e.g., agriculture, invasive species, destroyed areas)
     test <- landcover
     values(test)[values(test) == 1000] <- 0.1
     values(test)[values(test) == 2000] <- 0.5
