@@ -228,6 +228,9 @@ Load the packages we need for today:
         
     # combine your cost_distance object with the fst object
     fst <- cbind(fst, lcp)
+    
+    # look at the fst table (now includes your LCP data)
+    fst
         
     # do the stats!
     mrm_results <- MRM(fst$fst ~ fst$lcp, nperm=100)
