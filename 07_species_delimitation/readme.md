@@ -94,15 +94,8 @@ We will run the species delimitation MCMC for the pruned trees. It is a short ru
 for publication, you'd likely run this much longer (1-2 orders of magnitude longer).
 
     result_multi_piranga <- bgmyc.multiphylo(ptrees_pruned, mcmc=5000, burnin=4000, thinning=100, t1=2, t2=12, start=c(1,1,11))
-
-Now we will look at the MCMC mixing plot. What we want to see here is that the points are moving around to many different
-values for each estimated parameter (each of the four plots). If you are interested in learning more, you can search for
-information about MCMC convergence or MCMC mixing.
-
-    plot(result_multi_piranga)
     
-Now, whether or not it mixed well (we are on a time budget here), we will check out the results of delimiting the tips of
-the phylogeny into different assigned groups:
+Now, we will check out the results of delimiting the tips of the phylogeny into different assigned groups:
 
     result_probmat_piranga <- spec.probmat(result_multi_piranga)
     
