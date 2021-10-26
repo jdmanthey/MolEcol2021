@@ -44,6 +44,8 @@ This file contains 10,001 samples of phylogenetic tree estimation from the same 
 
     plot(ptrees[[1]], cex=0.5)
 
+## Answer Question #1
+
 In the trees, most of the individuals are from the genus _Piranga_ and the outgroup is the Northern Cardinal, (_Cardinalis cardinalis_).
 
 There are other ways to visualize trees as well. We can plot an unrooted tree with the following code. This is the exact same phylogeny
@@ -60,6 +62,8 @@ that we can see all the trees simultaneously:
 
     densiTree(ptrees, cex=0.5)
 
+## Answer Question #2
+
 Now we'll work with a subset of the phylogenies, excluding the outgroup and a clade with all long branches.
 
     tips_to_drop <- c("C_cardinalis", "P_leucoptera", "P_erythrocephala", "P_rubriceps")
@@ -69,7 +73,9 @@ Now we'll work with a subset of the phylogenies, excluding the outgroup and a cl
 Let's plot the pruned trees:
 
     densiTree(ptrees_pruned)
-    
+
+## Answer Question #3
+
 ## Species Delimitation
 
 We will be using some scripts from Noah Reid to run a species delimitation method called bGMYC: [http://nreid.github.io/software/]
@@ -103,5 +109,6 @@ And plot:
 
     plot(result_probmat_piranga, ptrees_pruned[[1]])
 
+## Answer Question #4
 
 
