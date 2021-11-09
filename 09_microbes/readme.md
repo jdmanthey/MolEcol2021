@@ -210,7 +210,7 @@ Sample a random family:
 	sample(sort(get_taxa_unique(ps, "Family")), 1)
 	
 The following lines of code will summarize the phyla and classes per sample, and summaries across all samples, followed by
-writing those results to two tablees each (copy and paste the whole thing):
+writing those results to two tables each (copy and paste the whole thing):
 
     i_phylum <- c()
     reps <- as.vector(unique(ps@tax_table[ ,colnames(ps@tax_table) == "Phylum"]))
